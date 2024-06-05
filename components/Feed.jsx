@@ -12,15 +12,16 @@ const Feed = () => {
   const [searchTimeout , setSearchTimeout] = useState(null);
   const [searchResult , setSearchResult] = useState([])
   const [prompt , setPrompt] = useState([]);
-  const fetchPrompt = async ()=>{
+
+
+  useEffect(()=>{
+    const fetchPrompt = async ()=>{
     const response = await fetch("/api/prompt" , {cache : "no-store"});
     const data = await response.json();
     console.log("data",data);
     setPrompt(data);
     setLoading(false);
   }
-
-  useEffect(()=>{
     fetchPrompt();
   } , [])
 
