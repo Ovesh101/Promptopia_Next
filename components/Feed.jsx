@@ -65,11 +65,12 @@ const Feed = () => {
 
       </form>
  
-      {searchResult.length > 0 ? 
-        <PromptCardList data={searchResult} handleTagClick={handleTagClick}  />
+      {searchText ? 
+        (<PromptCardList data={searchResult} handleTagClick={handleTagClick}  />)
       :
-        loading ? <Loading/> :
-        <PromptCardList data={prompt} handleTagClick={handleTagClick} />
+      loading ? <Loading /> : 
+       
+        (<PromptCardList data={prompt} handleTagClick={handleTagClick} />)
       }
 
     </section>
