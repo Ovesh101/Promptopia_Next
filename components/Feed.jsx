@@ -5,21 +5,23 @@ import PromptCardList from "./PromptCardList";
 import Loading from "@app/loading";
 
 
+
 const Feed = () => {
   const [loading,setLoading] = useState(true);
   const [searchText , setSearchText] = useState("");
   const [searchTimeout , setSearchTimeout] = useState(null);
   const [searchResult , setSearchResult] = useState([])
   const [prompt , setPrompt] = useState([]);
-  const fetchPrompt = async ()=>{
-    const response = await fetch("/api/prompt");
+
+
+  useEffect(()=>{
+    const fetchPrompt = async ()=>{
+    const response = await fetch("/api/prompt" , {cache : "no-store"});
     const data = await response.json();
     console.log("data",data);
     setPrompt(data);
     setLoading(false);
   }
-
-  useEffect(()=>{
     fetchPrompt();
   } , [])
 
