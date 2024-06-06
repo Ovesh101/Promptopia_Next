@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import Feed from "@components/Feed"
 import { Suspense } from "react"
 
