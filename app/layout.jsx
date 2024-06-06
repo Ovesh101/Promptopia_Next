@@ -2,6 +2,7 @@
 import '@/styles/globals.css'
 import Nav from '@components/Nav';
 import Provider from '@components/Provider';
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -22,6 +23,7 @@ export const metadata = ({
 
                 <main className='app'>
                     <Nav />
+                    <Toaster position='bottom-center' />
                     {children}
                 </main>
                 </Provider>

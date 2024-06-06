@@ -1,6 +1,7 @@
 "use client";
 import { useState , } from "react"
 import { useSession } from "next-auth/react"
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation"
 import Form from "@components/Form"
 
@@ -32,6 +33,15 @@ const CreatePrompt = () => {
                 })
             } )
             if(res.ok){
+                toast.success('Operation completed successfully!', {
+                    duration: 3000, // Duration in milliseconds
+                    position: 'bottom-left', // Position of the toast
+                    style: {
+                      background: '#00ff00', // Background color
+                      color: '#000000', // Text color
+                    },
+                    icon: '✔️', // Custom icon
+                  });
                 router.push("/");
             }
             

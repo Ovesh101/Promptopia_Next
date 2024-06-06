@@ -44,6 +44,15 @@ const UpdatePrompt = () => {
       });
 
       if (response.ok) {
+        toast.success('Prompt Edited  successfully!', {
+          duration: 3000, // Duration in milliseconds
+          position: 'bottom-left', // Position of the toast
+          style: {
+            background: '#00ff00', // Background color
+            color: '#000000', // Text color
+          },
+          icon: '✔️', // Custom icon
+        });
         router.push("/");
       }
     } catch (error) {

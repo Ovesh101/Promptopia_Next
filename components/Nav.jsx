@@ -7,6 +7,7 @@ import {signIn , signOut , getProviders , useSession} from "next-auth/react"
 const Nav = () => {
   const {data:session} = useSession();
   const [providers , setProviders] = useState(null);
+  const [isLoading , setLoading] = useState(false);
   const [toggleDropdown , setToggleDropDown] = useState(false);
   useEffect(()=>{
     const setProvidersFunc = async ()=>{
@@ -17,6 +18,13 @@ const Nav = () => {
     setProvidersFunc()
 
   } , [])
+
+  const handleSignout = ()=>{
+    setLoading(true);
+    
+    signOut({callbackUrl:"/"});
+
+  }
   return (
    <nav className="flex-between w-full mb-16 pt-3">
     <Link href="/" className="flex gap-2 flex-center ">
@@ -31,8 +39,8 @@ const Nav = () => {
           Create Post
 
         </Link>
-        <button className="outline_btn" onClick={signOut}  type="button">
-          SignOut
+        <button className="outline_btn" onClick={handleSignout} disabled={isLoading}  type="button">
+          {isLoading ? 'Signing Out...' : 'SignOut'}
         </button>
         <Link href="/profile" >
           <Image src={session?.user.image} alt="profile" width={35} height={35} className="rounded-full" />

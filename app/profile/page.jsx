@@ -35,9 +35,11 @@ const ProfilePage = () => {
                 await fetch(`/api/prompt/${singlePrompt._id}` , {
                     method:"DELETE"
                 });
+
                 const filteredPrompt = prompts.filter((p)=>p._id != singlePrompt._id);
                 setPrompts(filteredPrompt)
             } catch (error) {
+              
                
                 
             }
