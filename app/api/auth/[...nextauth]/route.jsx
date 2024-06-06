@@ -13,6 +13,8 @@ const handler = NextAuth({
     ],
     callbacks:{
         async session({session}){
+
+            console.log(session);
            
 
             const userSession = await User.findOne({

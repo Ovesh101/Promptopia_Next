@@ -16,7 +16,7 @@ const Feed = () => {
 
   useEffect(()=>{
     const fetchPrompt = async ()=>{
-    const response = await fetch("/api/prompt" , {cache : "no-store"});
+    const response = await fetch("/api/prompt");
     const data = await response.json();
     console.log("data",data);
     setPrompt(data);
@@ -66,11 +66,14 @@ const Feed = () => {
           />
 
       </form>
+
+    
  
       {searchText ? 
         (<PromptCardList data={searchResult} handleTagClick={handleTagClick}  />)
       :
       loading ? <Loading /> : 
+     
        
         (<PromptCardList data={prompt} handleTagClick={handleTagClick} />)
       }

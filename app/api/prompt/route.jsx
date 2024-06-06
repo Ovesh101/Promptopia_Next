@@ -1,6 +1,9 @@
 import Prompt from "@models/prompt";
 import { connectDB } from "@utils/Database";
+
+export const dynamic = 'force-dynamic';
 export async function GET(req , res) {
+
     try {
     await connectDB();
     const prompts = await Prompt.find({}).populate("creator");
