@@ -1,5 +1,5 @@
 "use client";
-
+import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -18,6 +18,7 @@ const UpdatePrompt = () => {
     const getPromptDetails = async () => {
       const response = await fetch(`/api/prompt/${promptId}`);
       const data = await response.json();
+      console.log("data" , data.tag[0]);
 
       setPost({
         prompt: data.prompt,

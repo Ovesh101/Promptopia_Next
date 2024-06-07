@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit, TagSingleClick }) => {
+const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   const [characterCount, setCharacterCount] = useState(post.prompt.length);
 
   const handlePromptChange = (e) => {
@@ -14,6 +14,11 @@ const Form = ({ type, post, setPost, submitting, handleSubmit, TagSingleClick })
       toast.error("Maximum character limit exceeded (500 characters)");
     }
   };
+  const TagSingleClick = (e)=>{
+    const inputTags = e.target.value.split(' ').filter(tag => tag.trim() !== '');
+    console.log("input tag" , inputTags);
+    setPost({ ...post, tag: inputTags });
+}
 
   return (
     <section className="w-full max-w-full flex-start flex-col ">
@@ -49,6 +54,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit, TagSingleClick })
           </span>
           <input
             className="form_input"
+            value={post.tag}
             onChange={TagSingleClick}
             required
           />

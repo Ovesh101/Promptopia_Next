@@ -54,7 +54,7 @@ const Feed = () => {
   }
 
   return (
-    <section className="feed">
+    <section className=" mt-16 feed">
       <form className="relative w-full flex-center ">
         <input 
         type="text"
