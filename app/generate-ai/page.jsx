@@ -1,10 +1,12 @@
 "use client"
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 const AIForm = () => {
   const [category, setCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
   const [description, setDescription] = useState('');
+  const [copied, setCopied] = useState("");
   const [isLoading , setLoading] = useState(false);
   const [generatedPrompt, setGeneratedPrompt] = useState('');
 
@@ -27,6 +29,11 @@ const AIForm = () => {
     setCategory(e.target.value);
     setSubCategory('');
     setDescription('');
+  };
+  const handleCopy = () => {
+    setCopied(generatedPrompt);
+    navigator.clipboard.writeText(generatedPrompt);
+    setTimeout(() => setCopied(false), 3000);
   };
 
   const handleSubCategoryChange = (e) => {
@@ -133,16 +140,15 @@ const AIForm = () => {
         </div>
       </form>
       {generatedPrompt && (
-        <div className="mt-6 p-4 border border-gray-300 rounded-md">
-          <h2 className="text-lg font-semibold">Generated Prompt:</h2>
-          <p className="mt-2">{generatedPrompt}</p>
-          <button
-            onClick={() => navigator.clipboard.writeText(generatedPrompt)}
-            className="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Copy to Clipboard
-          </button>
-        </div>
+       <div className=" relative mt-6 p-4 border border-gray-300 rounded-md">
+       <div className="absolute top-4 right-5">
+         <div className="copy_btn cursor-pointer flex" onClick={handleCopy}>
+           <Image src={copied === generatedPrompt ? "/assets/icons/tick.svg" : "/assets/icons/copy.svg"} alt={copied === generatedPrompt ? "tick_icon" : "copy_icon"} width={12} height={12} />
+         </div>
+       </div>
+       <h2 className="text-lg font-semibold">Generated Prompt:</h2>
+       <p className="mt-2">{generatedPrompt}</p>
+     </div>
       )}
     </div>
   );
