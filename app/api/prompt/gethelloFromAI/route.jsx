@@ -4,6 +4,7 @@ import OpenAI from "openai";
 // console.log(process.env.OPENAI_API_KEY)
 
 const openai = new OpenAI({apiKey:process.env.OPEN_AI_API_KEY});
+console.log(process.env.OPEN_AI_API_KEY);
 
 export async function POST(req, res) {
   try {
@@ -12,10 +13,15 @@ export async function POST(req, res) {
     // const genAI = new GoogleGenerativeAI(process.env.API_KEY);
     // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     
-    const prompt = 
-    `  i want to give me diffrent response of your choice based on info that i have give you like category: ${category} , sub category: ${subCategory} , description:${description}
-     with this info make diffrent prompt. provide only  one and best from out of all possible prompts.
-     focus on specific and problem-focussed. remove title and give 3 line of prompts and if anything info bu users placed in [] ?`
+    const prompt = `Based on the provided information: category: ${category}, sub category: ${subCategory}, and description: ${description}, generate a single, concise, and problem-focused prompt. Follow these guidelines to ensure relevance and specificity:
+
+    The prompt must directly relate to the given category and subcategory.
+    Focus on addressing the problem or issue described.
+    If information is missing, make logical assumptions based on typical scenarios in the given context.
+    Limit the response to three lines.
+    Avoid generalities; prioritize detailed and specific prompts.
+    From all possible prompts, select and provide only the best one.`
+
 
     //  console.log(prompt)
     // const result = await model.generateContent(prompt);
