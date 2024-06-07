@@ -67,6 +67,7 @@ const UpdatePrompt = () => {
     <Form
       type='Edit'
       post={post}
+      val={post.prompt.length > 0 ? post.prompt.length : 0}
       setPost={setPost}
       submitting={submitting}
       handleSubmit={updatePrompt}

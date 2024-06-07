@@ -42,6 +42,11 @@ const Nav = () => {
         <button className="outline_btn" onClick={handleSignout} disabled={isLoading}  type="button">
           {isLoading ? 'Signing Out...' : 'SignOut'}
         </button>
+        <Link href="/generate-ai" className="black_btn">
+          Generate-Prompt
+
+        </Link>
+        
         <Link href="/profile" >
           <Image src={session?.user.image} alt="profile" width={35} height={35} className="rounded-full" />
         </Link>
@@ -70,6 +75,10 @@ const Nav = () => {
               </Link>
               <Link href="/create-prompt" className="dropdown_link" onClick={()=>setToggleDropDown(false)}>
                 Create Prompt
+
+              </Link>
+              <Link href="/generate-ai" className="dropdown_link" onClick={()=>setToggleDropDown(false)}>
+                Generate-Prompt
 
               </Link>
               <button type="button" className="mt-5 w-full black_btn " onClick={()=>{

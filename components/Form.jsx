@@ -1,19 +1,23 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-  const [characterCount, setCharacterCount] = useState(post.prompt.length);
+const Form = ({ type, post, setPost,  submitting, handleSubmit }) => {
+  // const [characterCount, setCharacterCount] = useState(val);
 
   const handlePromptChange = (e) => {
     const promptText = e.target.value;
     if (promptText.length <= 300) {
       setPost({ ...post, prompt: promptText });
-      setCharacterCount(promptText.length);
+      // setCharacterCount(promptText.length);
     } else {
-      toast.error("Maximum character limit exceeded (500 characters)");
+      toast.error("Maximum character limit exceeded (300 characters)");
     }
   };
+  useEffect(()=>{
+    
+
+  } , [])
   const TagSingleClick = (e)=>{
     const inputTags = e.target.value.split(' ').filter(tag => tag.trim() !== '');
     console.log("input tag" , inputTags);
@@ -43,7 +47,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             onChange={handlePromptChange}
             required
           />
-          <div className="text-right text-gray-500">{characterCount}/300</div>
+          {/* <div className="text-right text-gray-500">{characterCount}/300</div> */}
+          <div className="text-right text-gray-500">{post.prompt ? post.prompt.length : 0}/300</div>
         </label>
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700 ">
