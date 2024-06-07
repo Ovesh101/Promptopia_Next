@@ -54,7 +54,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           </span>
           <input
             className="form_input"
-            value={post.tag}
+            
             onChange={TagSingleClick}
             required
           />
