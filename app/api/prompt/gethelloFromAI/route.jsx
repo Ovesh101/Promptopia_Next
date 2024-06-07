@@ -3,7 +3,7 @@ import OpenAI from "openai";
 
 // console.log(process.env.OPENAI_API_KEY)
 
-const openai = new OpenAI(process.env.OPENAI_API_KEY);
+const openai = new OpenAI({apiKey:process.env.OPEN_AI_API_KEY});
 
 export async function POST(req, res) {
   try {
@@ -13,7 +13,7 @@ export async function POST(req, res) {
     // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     
     const prompt = 
-    ` i need any sample for js language only. i want to give me diffrent response of your choice based on info that i have give you like category: ${category} , sub category: ${subCategory} , description:${description}
+    `  i want to give me diffrent response of your choice based on info that i have give you like category: ${category} , sub category: ${subCategory} , description:${description}
      with this info make diffrent prompt. provide only  one and best from out of all possible prompts.
      focus on specific and problem-focussed. remove title and give 3 line of prompts and if anything info bu users placed in [] ?`
 

@@ -5,6 +5,7 @@ const AIForm = () => {
   const [category, setCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
   const [description, setDescription] = useState('');
+  const [isLoading , setLoading] = useState(false);
   const [generatedPrompt, setGeneratedPrompt] = useState('');
 
   const categories = {
@@ -35,6 +36,7 @@ const AIForm = () => {
 
 //   This Function read the text when api send only text not json
   const handleGeneratePrompt = async () => {
+    setLoading(true);
     var response = {};
     try {
         const prompt =  await fetch("/api/prompt/gethelloFromAI" ,  {
@@ -55,6 +57,7 @@ const AIForm = () => {
         console.log("post req is not handled");
         
     }
+    setLoading(false)
    
     const reader = response.body.getReader();
     let text = '';
@@ -122,9 +125,10 @@ const AIForm = () => {
           <button
             type="button"
             onClick={handleGeneratePrompt}
+             disabled={isLoading} 
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
-            Generate Prompt
+              {isLoading ? 'Generating...' : 'Generate Prompt'}
           </button>
         </div>
       </form>
