@@ -13,8 +13,14 @@ const CreatePrompt = () => {
     const [submitting , setSubmitting] = useState(false);
     const [post , setPost] = useState({
         prompt: '',
-        tag:"",
+        tag:[],
     })
+
+    const TagSingleClick = (e)=>{
+        const inputTags = e.target.value.split(' ').filter(tag => tag.trim() !== '');
+        console.log("input tag" , inputTags);
+        setPost({ ...post, tag: inputTags });
+    }
     const createPrompt = async (e)=>{
         e.preventDefault();
         setSubmitting(true);
@@ -63,6 +69,7 @@ const CreatePrompt = () => {
     setPost={setPost}
     submitting={submitting}
     handleSubmit = {createPrompt}
+    TagSingleClick={TagSingleClick}
     
     />
     

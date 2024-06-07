@@ -1,6 +1,20 @@
 import Link from "next/link";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+const Form = ({ type, post, setPost, submitting, handleSubmit, TagSingleClick }) => {
+  const [characterCount, setCharacterCount] = useState(post.prompt.length);
+
+  const handlePromptChange = (e) => {
+    const promptText = e.target.value;
+    if (promptText.length <= 300) {
+      setPost({ ...post, prompt: promptText });
+      setCharacterCount(promptText.length);
+    } else {
+      toast.error("Maximum character limit exceeded (500 characters)");
+    }
+  };
+
   return (
     <section className="w-full max-w-full flex-start flex-col ">
       <h1 className="head_text text_left">
@@ -21,30 +35,29 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <textarea
             className="form_textarea"
             value={post.prompt}
-            onChange={(e) => setPost({ ...post, prompt: e.target.value })}
+            onChange={handlePromptChange}
             required
           />
+          <div className="text-right text-gray-500">{characterCount}/300</div>
         </label>
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700 ">
             Tag {` `}
             <span className="font-normal ">
-              (#product, #webdevolopment, #idea)
+              (#product, #webdevelopment, #idea)
             </span>
           </span>
           <input
             className="form_input"
-            value={post.tag}
-            onChange={(e) => setPost({ ...post, tag: e.target.value })}
+            onChange={TagSingleClick}
             required
           />
         </label>
 
         <div className="flex-end mx-3 mb-5 gap-4 ">
-          <Link href="/" className="text-gray-700 text-xl" >Cancel</Link>
+          <Link href="/" className="text-gray-700 text-xl">Cancel</Link>
           <button className="px-5 py-2 text-xl bg-primary-orange rounded-full text-white " type="submit" disabled={submitting}>
-            {submitting ? `${type}....` :  type}
-
+            {submitting ? `${type}....` : type}
           </button>
         </div>
       </form>

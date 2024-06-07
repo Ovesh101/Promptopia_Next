@@ -21,7 +21,7 @@ const UpdatePrompt = () => {
 
       setPost({
         prompt: data.prompt,
-        tag: data.tag,
+        tag: data.tag || [],
       });
     };
 
